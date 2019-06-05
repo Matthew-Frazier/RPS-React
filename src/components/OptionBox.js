@@ -1,14 +1,27 @@
 import React from 'react';
-import { Image, Segment, } from 'semantic-ui-react';
+import rock from '../images/rock.png'
+import paper from '../images/paper.png'
+import scissors from '../images/scissors.png'
+import { Image, Segment, Grid, } from 'semantic-ui-react';
 
 const OptionBox = (props) => (
-  <Segment circular style={{ padding: "45px", borderColor: "blue", borderWidth: "5px", }}>
-    <Image 
-    src={props.img} 
-    onClick={ () => props.optionClick(props.name)} 
-    size="small"
-    />
-  </Segment>
+  <React.Fragment>
+        <Grid.Column>
+          <Segment circular style={{border: "solid 5px purple" }}>
+          <Image size="small" name="rock" src={rock} onClick={() => props.optionClick("rock")}/>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment circular style={{border: "solid 5px purple" }}>
+          <Image size="small" name="paper" src={paper} onClick={() => props.optionClick('paper')}/>
+          </Segment>
+        </Grid.Column>
+        <Grid.Column>
+          <Segment circular style={{border: "solid 5px purple" }}>
+          <Image size="small" name="scissors" src={scissors} onClick={() => props.optionClick('scissors')}/>
+          </Segment>
+        </Grid.Column>
+    </React.Fragment>
 );
 
 export default OptionBox;

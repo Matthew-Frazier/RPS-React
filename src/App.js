@@ -1,37 +1,31 @@
 import React from 'react';
 import OptionBox from './components/OptionBox'
-import rock from './images/rock.png'
-import paper from './images/paper.png'
-import scissors from './images/scissors.png'
-import { Container, Header, Grid, } from 'semantic-ui-react';
+import { Container, Header, Grid, Divider, } from 'semantic-ui-react';
 
 class App extends React.Component {
-  state = { userChoice: null, compChoice: null, };
+  state = { 
+    userChoice: null, 
+    compChoice: null, 
+    userScore: 0, 
+    compScore: 0 
+  };
 
   optionClick = (option) => {
-    debugger
+    this.setState({ userChoice: option, compChoice: this.randomChoice() })
+  }
+
+  randomChoice = () => {
+    const choices = ['rock', 'paper', 'scissors']; 
+    return choices[Math.floor(Math.random() * choices.length)]; 
   }
 
   render() {
     return(
-      <Container style={{ marginTop: "25px", }} textAlign="center">
-        <Header as="h1">Rock, Paper, Scissors</Header>
-        <Header as="h1">React</Header>
-        <hr/>
-        <Grid>
-          <Grid.Row columns={3} centered>
-            <Grid.Column>
-              <OptionBox name="rock" img={rock} optionClick={this.optionClick} />
-            </Grid.Column>
-
-            <Grid.Column>
-              <OptionBox name="paper" img={paper} optionClick={this.optionClick} />
-            </Grid.Column>
-
-            <Grid.Column>
-              <OptionBox name="scissors" img={scissors} optionClick={this.optionClick} />
-            </Grid.Column>
-          </Grid.Row>
+      <Container style={{marginTop: "15px", letterSpacing: "2px",}}>
+        <Header textAlign="center" size="huge">Rock Paper Scissors</Header>
+        <Divider/>
+        <Grid columns="equal">
+          <OptionBox optionClick={this.optionClick}/>
         </Grid>
       </Container>
     );
